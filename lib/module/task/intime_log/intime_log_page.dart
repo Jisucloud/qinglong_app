@@ -55,10 +55,9 @@ class _InTimeLogPageState extends State<InTimeLogPage>
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+    return Scaffold(
+      body: SafeArea(
         child: Container(
-          color: Colors.white,
           padding: const EdgeInsets.symmetric(
             vertical: 10,
           ),
@@ -164,6 +163,7 @@ class _InTimeLogPageState extends State<InTimeLogPage>
           getLogData();
         },
       );
+      getLogData();
     } else {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         getLogData();
