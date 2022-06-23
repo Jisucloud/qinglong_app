@@ -23,55 +23,54 @@ class SubscriptionPage extends ConsumerStatefulWidget {
   _ScriptPageState createState() => _ScriptPageState();
 }
 
-class _ScriptPageState extends ConsumerState<SubscriptionPage>
-    with LazyLoadState<SubscriptionPage> {
+class _ScriptPageState extends ConsumerState<SubscriptionPage> with LazyLoadState<SubscriptionPage> {
   List<Subscription> list = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: QlAppBar(
-          title: "订阅管理",
-          canBack: true,
-          actions: [
-            InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                  Routes.routerSubscriptionAdd,
-                );
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: Center(
-                  child: Icon(
-                    CupertinoIcons.add,
-                    size: 24,
-                    color: Colors.white,
-                  ),
+      appBar: QlAppBar(
+        title: "订阅管理",
+        canBack: true,
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                Routes.routerSubscriptionAdd,
+              );
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 15,
+              ),
+              child: Center(
+                child: Icon(
+                  CupertinoIcons.add,
+                  size: 24,
+                  color: Colors.white,
                 ),
               ),
             ),
-          ],
-        ),
-        body: RefreshIndicator(
-          color: Theme.of(context).primaryColor,
-          onRefresh: () async {
-            return loadData();
-          },
-          child: list.isEmpty
-              ? const EmptyWidget()
-              : ListView.builder(
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
-                  itemBuilder: (context, index) {
-                    Subscription item = list[index];
-                    return SubscriptionCell(list[index], index, ref);
-                  },
-                  itemCount: list.length,
-                ),
-        ));
+          ),
+        ],
+      ),
+      body: RefreshIndicator(
+        color: Theme.of(context).primaryColor,
+        onRefresh: () async {
+          return loadData();
+        },
+        child: list.isEmpty
+            ? const EmptyWidget()
+            : ListView.builder(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                itemBuilder: (context, index) {
+                  Subscription item = list[index];
+                  return SubscriptionCell(list[index], index, ref);
+                },
+                itemCount: list.length,
+              ),
+      ),
+    );
   }
 
   Future<void> loadData() async {
@@ -100,8 +99,7 @@ class SubscriptionCell extends StatelessWidget {
   final int index;
   final WidgetRef ref;
 
-  const SubscriptionCell(this.bean, this.index, this.ref, {Key? key})
-      : super(key: key);
+  const SubscriptionCell(this.bean, this.index, this.ref, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +115,7 @@ class SubscriptionCell extends StatelessWidget {
                 backgroundColor: const Color(0xff5D5E70),
                 onPressed: (_) {
                   WidgetsBinding.instance.endOfFrame.then((timeStamp) {
-                    Navigator.of(context).pushNamed(
-                        Routes.routerSubscriptionAdd,
-                        arguments: bean);
+                    Navigator.of(context).pushNamed(Routes.routerSubscriptionAdd, arguments: bean);
                   });
                 },
                 foregroundColor: Colors.white,
@@ -131,9 +127,7 @@ class SubscriptionCell extends StatelessWidget {
                   changeSubscriptionEnable();
                 },
                 foregroundColor: Colors.white,
-                icon: bean.isDisabled == null || bean.isDisabled == 0
-                    ? Icons.dnd_forwardslash
-                    : Icons.check_circle_outline_sharp,
+                icon: bean.isDisabled == null || bean.isDisabled == 0 ? Icons.dnd_forwardslash : Icons.check_circle_outline_sharp,
               ),
               SlidableAction(
                 backgroundColor: const Color(0xffEA4D3E),
@@ -155,9 +149,7 @@ class SubscriptionCell extends StatelessWidget {
                   changeSubscriptionStatus();
                 },
                 foregroundColor: Colors.white,
-                icon: bean.status! == 1
-                    ? CupertinoIcons.memories
-                    : CupertinoIcons.stop_circle,
+                icon: bean.status! == 1 ? CupertinoIcons.memories : CupertinoIcons.stop_circle,
               ),
               SlidableAction(
                 backgroundColor: const Color(0xff606467),
@@ -175,10 +167,8 @@ class SubscriptionCell extends StatelessWidget {
             ],
           ),
           child: InkWell(
-            onTap: (){
-              Navigator.of(context).pushNamed(
-                  Routes.routerSubscriptionDetail,
-                  arguments: bean);
+            onTap: () {
+              Navigator.of(context).pushNamed(Routes.routerSubscriptionDetail, arguments: bean);
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -211,9 +201,7 @@ class SubscriptionCell extends StatelessWidget {
                                         height: 15,
                                         child: CircularProgressIndicator(
                                           strokeWidth: 2,
-                                          color: ref
-                                              .watch(themeProvider)
-                                              .primaryColor,
+                                          color: ref.watch(themeProvider).primaryColor,
                                         ),
                                       ),
                                 SizedBox(
@@ -228,10 +216,7 @@ class SubscriptionCell extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         overflow: TextOverflow.ellipsis,
-                                        color: ref
-                                            .watch(themeProvider)
-                                            .themeColor
-                                            .titleColor(),
+                                        color: ref.watch(themeProvider).themeColor.titleColor(),
                                         fontSize: 18,
                                       ),
                                     ),
@@ -247,10 +232,7 @@ class SubscriptionCell extends StatelessWidget {
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
-                                color: ref
-                                    .watch(themeProvider)
-                                    .themeColor
-                                    .descColor(),
+                                color: ref.watch(themeProvider).themeColor.descColor(),
                                 fontSize: 12,
                               ),
                             ),
@@ -280,10 +262,7 @@ class SubscriptionCell extends StatelessWidget {
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
-                                color: ref
-                                    .watch(themeProvider)
-                                    .themeColor
-                                    .descColor(),
+                                color: ref.watch(themeProvider).themeColor.descColor(),
                                 fontSize: 12,
                               ),
                             ),
@@ -301,8 +280,7 @@ class SubscriptionCell extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
-                            color:
-                                ref.watch(themeProvider).themeColor.descColor(),
+                            color: ref.watch(themeProvider).themeColor.descColor(),
                             fontSize: 12,
                           ),
                         ),

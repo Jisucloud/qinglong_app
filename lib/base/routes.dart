@@ -12,7 +12,6 @@ import 'package:qinglong_app/module/others/backup/backup_page.dart';
 import 'package:qinglong_app/module/others/dependencies/add_dependency_page.dart';
 import 'package:qinglong_app/module/others/dependencies/dependency_page.dart';
 import 'package:qinglong_app/module/others/login_log/login_log_page.dart';
-import 'package:qinglong_app/module/others/scripts/acript_add_page.dart';
 import 'package:qinglong_app/module/others/scripts/script_detail_page.dart';
 import 'package:qinglong_app/module/others/scripts/script_edit_page.dart';
 import 'package:qinglong_app/module/others/scripts/script_page.dart';
@@ -27,6 +26,8 @@ import 'package:qinglong_app/module/others/update_password_page.dart';
 import 'package:qinglong_app/module/task/add_task_page.dart';
 import 'package:qinglong_app/module/task/task_bean.dart';
 import 'package:qinglong_app/module/task/task_detail/task_detail_page.dart';
+
+import '../module/others/scripts/script_add_page.dart';
 
 class Routes {
   static const String routeHomePage = "/home/homepage";
@@ -83,8 +84,7 @@ class Routes {
           return MaterialPageRoute(builder: (context) => const AddTaskPage());
         }
       case routeAddDependency:
-        return MaterialPageRoute(
-            builder: (context) => const AddDependencyPage());
+        return MaterialPageRoute(builder: (context) => const AddDependencyPage());
       case routeAddEnv:
         if (settings.arguments != null) {
           return MaterialPageRoute(
@@ -164,15 +164,19 @@ class Routes {
           ),
         );
       case routeScriptAdd:
-        return CupertinoPageRoute(
-          builder: (context) => const ScriptAddPage(),
+        return MaterialPageRoute(
+          builder: (context) => ScriptAddPage(
+            (settings.arguments as Map)["title"],
+            (settings.arguments as Map)["path"],
+          ),
         );
       case routerSubscription:
-        return CupertinoPageRoute(
+        //部分低端手机用Cupertino滑动时掉帧,左侧会出现白色空白
+        return MaterialPageRoute(
           builder: (context) => const SubscriptionPage(),
         );
       case routerSubscriptionDetail:
-        return CupertinoPageRoute(
+        return MaterialPageRoute(
           builder: (context) => SubscriptionDetailPage(
             settings.arguments as Subscription,
           ),
@@ -181,17 +185,16 @@ class Routes {
         if (settings.arguments != null) {
           return MaterialPageRoute(
               builder: (context) => SubscriptionAddPage(
-                settings.arguments as Subscription,
-              ));
+                    settings.arguments as Subscription,
+                  ));
         } else {
           return MaterialPageRoute(builder: (context) => const SubscriptionAddPage(null));
         }
       case routerBackup:
-        return CupertinoPageRoute(
+        return MaterialPageRoute(
           builder: (context) => const BackUpPage(),
         );
     }
-
 
     return null;
   }

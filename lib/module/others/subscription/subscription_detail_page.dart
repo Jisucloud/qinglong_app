@@ -154,77 +154,80 @@ class _SubscriptionDetailPageState extends State<SubscriptionDetailPage> {
           )
         ],
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TaskDetailCell(
-            title: "名称",
-            desc: widget.bean.name,
-          ),
-          TaskDetailCell(
-            title: "仓库类型",
-            desc: widget.bean.type == "public-repo"
-                ? "公开仓库"
-                : widget.bean.type == "private-repo"
-                    ? "私有仓库"
-                    : "单文件",
-          ),
-          TaskDetailCell(
-            title: "链接",
-            desc: widget.bean.url ?? "",
-          ),
-          TaskDetailCell(
-            title: "分支",
-            desc: widget.bean.branch ?? "",
-          ),
-          TaskDetailCell(
-            title: "定时类型",
-            desc: widget.bean.scheduleType ?? "",
-          ),
-          TaskDetailCell(
-            title: "定时规则",
-            desc: widget.bean.scheduleType == "crontab"
-                ? widget.bean.schedule ?? ""
-                : widget.bean.intervalSchedule!.type == "days"
-                    ? "每" + widget.bean.intervalSchedule!.value.toString() + "天"
-                    : widget.bean.intervalSchedule!.type == "hours"
-                        ? "每" +
-                            widget.bean.intervalSchedule!.value.toString() +
-                            "小时"
-                        : widget.bean.intervalSchedule!.type == "minutes"
-                            ? "每" +
-                                widget.bean.intervalSchedule!.value.toString() +
-                                "分钟"
-                            : "每" +
-                                widget.bean.intervalSchedule!.value.toString() +
-                                "秒",
-          ),
-          TaskDetailCell(
-            title: "白名单",
-            desc: widget.bean.whitelist ?? "",
-          ),
-          TaskDetailCell(
-            title: "黑名单",
-            desc: widget.bean.blacklist ?? "",
-          ),
-          TaskDetailCell(
-            title: "依赖文件",
-            desc: widget.bean.dependences ?? "",
-          ),
-          TaskDetailCell(
-            title: "文件后缀",
-            desc: widget.bean.extensions ?? "",
-          ),
-          TaskDetailCell(
-            title: "执行前",
-            desc: widget.bean.subAfter ?? "",
-          ),
-          TaskDetailCell(
-            title: "执行后",
-            desc: widget.bean.subBefore ?? "",
-          ),
-        ],
+      body: SingleChildScrollView(
+        primary: true,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TaskDetailCell(
+              title: "名称",
+              desc: widget.bean.name,
+            ),
+            TaskDetailCell(
+              title: "仓库类型",
+              desc: widget.bean.type == "public-repo"
+                  ? "公开仓库"
+                  : widget.bean.type == "private-repo"
+                      ? "私有仓库"
+                      : "单文件",
+            ),
+            TaskDetailCell(
+              title: "链接",
+              desc: widget.bean.url ?? "",
+            ),
+            TaskDetailCell(
+              title: "分支",
+              desc: widget.bean.branch ?? "",
+            ),
+            TaskDetailCell(
+              title: "定时类型",
+              desc: widget.bean.scheduleType ?? "",
+            ),
+            TaskDetailCell(
+              title: "定时规则",
+              desc: widget.bean.scheduleType == "crontab"
+                  ? widget.bean.schedule ?? ""
+                  : widget.bean.intervalSchedule!.type == "days"
+                      ? "每" + widget.bean.intervalSchedule!.value.toString() + "天"
+                      : widget.bean.intervalSchedule!.type == "hours"
+                          ? "每" +
+                              widget.bean.intervalSchedule!.value.toString() +
+                              "小时"
+                          : widget.bean.intervalSchedule!.type == "minutes"
+                              ? "每" +
+                                  widget.bean.intervalSchedule!.value.toString() +
+                                  "分钟"
+                              : "每" +
+                                  widget.bean.intervalSchedule!.value.toString() +
+                                  "秒",
+            ),
+            TaskDetailCell(
+              title: "白名单",
+              desc: widget.bean.whitelist ?? "",
+            ),
+            TaskDetailCell(
+              title: "黑名单",
+              desc: widget.bean.blacklist ?? "",
+            ),
+            TaskDetailCell(
+              title: "依赖文件",
+              desc: widget.bean.dependences ?? "",
+            ),
+            TaskDetailCell(
+              title: "文件后缀",
+              desc: widget.bean.extensions ?? "",
+            ),
+            TaskDetailCell(
+              title: "执行前",
+              desc: widget.bean.subAfter ?? "",
+            ),
+            TaskDetailCell(
+              title: "执行后",
+              desc: widget.bean.subBefore ?? "",
+            ),
+          ],
+        ),
       ),
     );
   }
