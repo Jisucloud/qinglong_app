@@ -8,12 +8,18 @@ import 'package:qinglong_app/module/env/env_detail_page.dart';
 import 'package:qinglong_app/module/home/home_page.dart';
 import 'package:qinglong_app/module/login/login_page.dart';
 import 'package:qinglong_app/module/others/about_page.dart';
+import 'package:qinglong_app/module/others/backup/backup_page.dart';
 import 'package:qinglong_app/module/others/dependencies/add_dependency_page.dart';
 import 'package:qinglong_app/module/others/dependencies/dependency_page.dart';
 import 'package:qinglong_app/module/others/login_log/login_log_page.dart';
+import 'package:qinglong_app/module/others/scripts/acript_add_page.dart';
 import 'package:qinglong_app/module/others/scripts/script_detail_page.dart';
 import 'package:qinglong_app/module/others/scripts/script_edit_page.dart';
 import 'package:qinglong_app/module/others/scripts/script_page.dart';
+import 'package:qinglong_app/module/others/subscription/subscription_add_page.dart';
+import 'package:qinglong_app/module/others/subscription/subscription_bean.dart';
+import 'package:qinglong_app/module/others/subscription/subscription_detail_page.dart';
+import 'package:qinglong_app/module/others/subscription/subscription_page.dart';
 import 'package:qinglong_app/module/others/task_log/task_log_detail_page.dart';
 import 'package:qinglong_app/module/others/task_log/task_log_page.dart';
 import 'package:qinglong_app/module/others/theme_page.dart';
@@ -43,6 +49,12 @@ class Routes {
   static const String routeAbout = "/about";
   static const String routeTheme = "/theme";
   static const String routeChangeAccount = "/changeAccount";
+  static const String routerAddScript = "/script/add";
+  static const String routerSubscription = "/subscription";
+  static const String routerSubscriptionDetail = "/subscription/detail";
+  static const String routerSubscriptionAdd = "/subscription/add";
+
+  static const String routerBackup = "/backup";
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -151,7 +163,35 @@ class Routes {
             (settings.arguments as Map)["content"],
           ),
         );
+      case routeScriptAdd:
+        return CupertinoPageRoute(
+          builder: (context) => const ScriptAddPage(),
+        );
+      case routerSubscription:
+        return CupertinoPageRoute(
+          builder: (context) => const SubscriptionPage(),
+        );
+      case routerSubscriptionDetail:
+        return CupertinoPageRoute(
+          builder: (context) => SubscriptionDetailPage(
+            settings.arguments as Subscription,
+          ),
+        );
+      case routerSubscriptionAdd:
+        if (settings.arguments != null) {
+          return MaterialPageRoute(
+              builder: (context) => SubscriptionAddPage(
+                settings.arguments as Subscription,
+              ));
+        } else {
+          return MaterialPageRoute(builder: (context) => const SubscriptionAddPage(null));
+        }
+      case routerBackup:
+        return CupertinoPageRoute(
+          builder: (context) => const BackUpPage(),
+        );
     }
+
 
     return null;
   }

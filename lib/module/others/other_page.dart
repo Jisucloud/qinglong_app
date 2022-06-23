@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qinglong_app/base/routes.dart';
-import 'package:qinglong_app/base/sp_const.dart';
 import 'package:qinglong_app/base/theme.dart';
 import 'package:qinglong_app/base/userinfo_viewmodel.dart';
 import 'package:qinglong_app/main.dart';
 import 'package:qinglong_app/utils/extension.dart';
-import 'package:qinglong_app/utils/sp_utils.dart';
 
 class OtherPage extends ConsumerStatefulWidget {
   const OtherPage({Key? key}) : super(key: key);
@@ -28,7 +26,14 @@ class _OtherPageState extends ConsumerState<OtherPage> {
         children: [
           Container(
             margin: const EdgeInsets.symmetric(
+              horizontal: 15,
               vertical: 15,
+            ),
+            decoration: BoxDecoration(
+              color: ref.watch(themeProvider).themeColor.settingBordorColor(),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15),
+              ),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -230,12 +235,102 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                     ),
                   ),
                 ),
+                const Divider(
+                  indent: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      Routes.routerSubscription,
+                    );
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 5,
+                      bottom: 10,
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "订阅管理",
+                          style: TextStyle(
+                            color: ref
+                                .watch(themeProvider)
+                                .themeColor
+                                .titleColor(),
+                            fontSize: 16,
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          CupertinoIcons.right_chevron,
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Divider(
+                  indent: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      Routes.routerBackup,
+                    );
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 5,
+                      bottom: 10,
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "数据备份",
+                          style: TextStyle(
+                            color: ref
+                                .watch(themeProvider)
+                                .themeColor
+                                .titleColor(),
+                            fontSize: 16,
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          CupertinoIcons.right_chevron,
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Divider(
+                  indent: 15,
+                ),
               ],
             ),
           ),
           Container(
             margin: const EdgeInsets.symmetric(
+              horizontal: 15,
               vertical: 15,
+            ),
+            decoration: BoxDecoration(
+              color: ref.watch(themeProvider).themeColor.settingBordorColor(),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15),
+              ),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -272,40 +367,6 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                 const Divider(
                   indent: 15,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 15,
-                    right: 15,
-                    bottom: 5,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "查看代码是否显示行号",
-                        style: TextStyle(
-                          color:
-                              ref.watch(themeProvider).themeColor.titleColor(),
-                          fontSize: 16,
-                        ),
-                      ),
-                      const Spacer(),
-                      CupertinoSwitch(
-                        activeColor: ref.watch(themeProvider).primaryColor,
-                        value: SpUtil.getBool(spShowLine, defValue: false),
-                        onChanged: (open) async {
-                          await SpUtil.putBool(spShowLine, open);
-                          setState(() {});
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                const Divider(
-                  indent: 15,
-                  height: 1,
-                ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
@@ -316,7 +377,7 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 15,
-                      vertical: 10,
+                      vertical: 5,
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
