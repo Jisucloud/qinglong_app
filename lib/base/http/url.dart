@@ -130,6 +130,38 @@ class Url {
         : "/api/envs/$envId/move";
   }
 
+  // 运行订阅
+  static get runSubscriptions => getIt<UserInfoViewModel>().useSecretLogined
+      ? "/open/subscriptions/run"
+      : "/api/subscriptions/run";
+
+  // 停止订阅
+  static get stopSubscriptions => getIt<UserInfoViewModel>().useSecretLogined
+      ? "/open/subscriptions/stop"
+      : "/api/subscriptions/stop";
+
+  // 启用订阅
+  static get enableSubscriptions => getIt<UserInfoViewModel>().useSecretLogined
+      ? "/open/subscriptions/enable"
+      : "/api/subscriptions/enable";
+
+  // 禁用订阅
+  static get disableSubscriptions => getIt<UserInfoViewModel>().useSecretLogined
+      ? "/open/subscriptions/disable"
+      : "/api/subscriptions/disable";
+
+  // GET 获取订阅 POST 提交订阅 PUT 修改订阅 DELETE 删除订阅
+  static get subscriptions => getIt<UserInfoViewModel>().useSecretLogined
+      ? "/open/subscriptions"
+      : "/api/subscriptions";
+
+  // 获取订阅日志
+  static subtimeLog(int cronId) {
+    return getIt<UserInfoViewModel>().useSecretLogined
+        ? "/open/subscriptions/$cronId/log"
+        : "/api/subscriptions/$cronId/log";
+  }
+
   static bool inWhiteList(String path) {
     if (path == login ||
         path == loginByClientId ||

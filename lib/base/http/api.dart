@@ -9,6 +9,7 @@ import 'package:qinglong_app/module/login/user_bean.dart';
 import 'package:qinglong_app/module/others/dependencies/dependency_bean.dart';
 import 'package:qinglong_app/module/others/login_log/login_log_bean.dart';
 import 'package:qinglong_app/module/others/scripts/script_bean.dart';
+import 'package:qinglong_app/module/others/subscription/subscription_bean.dart';
 import 'package:qinglong_app/module/others/task_log/task_log_bean.dart';
 import 'package:qinglong_app/module/task/task_bean.dart';
 import 'package:qinglong_app/utils/utils.dart';
@@ -375,6 +376,91 @@ class Api {
     return await Http.delete<NullResponse>(
       Url.dependencies,
       [id],
+    );
+  }
+
+
+  // 获取订阅
+  static Future<HttpResponse<List<Subscription>>> getSubscription()async{
+    return await Http.get<List<Subscription>>(
+        Url.subscriptions,
+        {}
+    );
+  }
+
+  // 新增订阅
+  static Future<HttpResponse<Subscription>> postSubscription(Subscription subscription)async{
+    var data = subscription.toJson();
+    data.remove("id");
+    data.remove("status");
+    data.remove("pid");
+    data.remove("log_path");
+   data.remove("is_disabled");
+    data.remove("createdAt");
+    data.remove("updatedAt");
+    data.remove("pullType");
+    data.remove("pullOption");
+    return await Http.post<Subscription>(
+        Url.subscriptions,
+      data
+    );
+  }
+
+  // 修改订阅
+  static Future<HttpResponse<Subscription>> putSubscription(Subscription subscription)async{
+    return await Http.put<Subscription>(
+        Url.subscriptions,
+        subscription.toJson()
+    );
+  }
+
+  // 删除订阅 参数未一个id数组
+  static Future<HttpResponse<NullResponse>> deleteSubscription(List<int> ids)async{
+    return await Http.delete<NullResponse>(
+        Url.subscriptions,
+        ids
+    );
+  }
+
+  // 删除订阅 参数未一个id数组
+  static Future<HttpResponse<NullResponse>> disableSubscription(List<int> ids)async{
+    return await Http.put<NullResponse>(
+        Url.disableSubscriptions,
+        ids
+    );
+  }
+
+  // 删除订阅 参数未一个id数组
+  static Future<HttpResponse<NullResponse>> enableSubscription(List<int> ids)async{
+    return await Http.put<NullResponse>(
+        Url.enableSubscriptions,
+        ids
+    );
+  }
+
+  // 开始执行订阅
+  static Future<HttpResponse<NullResponse>> startSubscription(
+      List<int> subscriptions) async {
+    return await Http.put<NullResponse>(
+      Url.runSubscriptions,
+      subscriptions,
+    );
+  }
+
+  // 暂停订阅执行
+  static Future<HttpResponse<NullResponse>> stopSubscription(
+      List<int> subscriptions) async {
+    return await Http.put<NullResponse>(
+      Url.stopSubscriptions,
+      subscriptions,
+    );
+  }
+
+  // 获取订阅的日志
+  static Future<HttpResponse<String>> subTimeLog(int subId) async {
+    return await Http.get<String>(
+      Url.subtimeLog(subId),
+      null,
     );
   }
 }

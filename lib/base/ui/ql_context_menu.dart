@@ -89,7 +89,7 @@ enum _ContextMenuLocation {
 /// See also:
 ///
 ///  * [Apple's HIG for Context Menus](https://developer.apple.com/design/human-interface-guidelines/ios/controls/context-menus/)
-class QlCupertinoContextMenu extends StatefulWidget {
+class QlCupertinoContextMenu<T> extends StatefulWidget {
   /// Create a context menu.
   ///
   /// [actions] is required and cannot be null or empty.
@@ -105,7 +105,7 @@ class QlCupertinoContextMenu extends StatefulWidget {
         assert(child != null),
         super(key: key);
 
-  final TaskBean bean;
+  final T bean;
 
   /// The widget that can be "opened" with the [QlCupertinoContextMenu].
   ///
@@ -322,8 +322,14 @@ class _QlCupertinoContextMenuState extends State<QlCupertinoContextMenu>
       _openController.reverse();
     } else {
       if (_openController.isDismissed) {
-        Navigator.of(context)
-            .pushNamed(Routes.routeTaskDetail, arguments: widget.bean);
+        if (widget.bean is TaskBean){
+          Navigator.of(context)
+              .pushNamed(Routes.routeTaskDetail, arguments: widget.bean);
+        }else{
+          Navigator.of(context)
+              .pushNamed(Routes.routerSubscriptionDetail, arguments: widget.bean);
+        }
+
       }
     }
   }
