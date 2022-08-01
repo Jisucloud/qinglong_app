@@ -4,8 +4,7 @@
 
 基于[qinglong](https://github.com/whyour/qinglong)API实现的三方客户端,采用Flutter编写 (API最低支持2.10.0)
 
-Android端去[release](https://github.com/qinglong-app/qinglong_app/releases)下载
-
+Android端下载地址:[release](https://github.com/qinglong-app/qinglong_app/releases)
 
 iOS端下载地址: [AppStore](https://apps.apple.com/cn/app/id1625871665)
 
