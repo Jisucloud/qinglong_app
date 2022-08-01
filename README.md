@@ -10,13 +10,13 @@ iOS端下载地址: [AppStore](https://apps.apple.com/cn/app/id1625871665)
 
 
 <p float="left">
-  <img src="./art/1.png" width="200" />
-  <img src="./art/2.png" width="200" />
-  <img src="./art/3.png" width="200" />
+  <img src="./art/1.png" width="300" />
+  <img src="./art/2.png" width="300" />
+  <img src="./art/3.png" width="300" />
 </p>
 <p float="left">
-  <img src="./art/4.png" width="200" />
-  <img src="./art/5.png" width="200" /> 
+  <img src="./art/4.png" width="300" />
+  <img src="./art/5.png" width="300" /> 
 </p>
 
 
