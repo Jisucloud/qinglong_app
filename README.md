@@ -19,4 +19,4 @@ iOS端下载地址: [AppStore](https://apps.apple.com/cn/app/id1625871665)
   <img src="./art/5.png" width="250" /> 
 </p>
 
-
+不再开放源码, 之前的源码在这 https://github.com/qinglong-app/qinglong_app/tags
