@@ -18,5 +18,6 @@ iOS端下载地址: [AppStore](https://apps.apple.com/cn/app/id1625871665)
 <p float="left">
   <img src="./art/4.png" width="250" />
   <img src="./art/5.png" width="250" /> 
+  <img src="./art/6.jpg" width="250" /> 
 </p>
 
