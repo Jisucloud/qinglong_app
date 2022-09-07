@@ -1,5 +1,7 @@
 # qinglong_app
 
+AppStore搜索 『青龙客户端』
+
 版本更新通知 https://t.me/qinglongapp
 
 基于[qinglong](https://github.com/whyour/qinglong)API实现的三方客户端,采用Flutter编写 (API最低支持2.10.0)
